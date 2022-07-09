@@ -1,0 +1,85 @@
+
+Main
+association Controller_system
+---
+---
+---
+
+Controller_system
+composes DatesSystem
+composes PaperRepo
+composes WeatherSystem
+---
+- usuarioRepository: UsuarioRepository
+---
++ Controller_system()
+
+---
+
+DatesSystem
+---
+- date : str
+- time: str
+---
++ DatesSystem()
++ setDate():void
++ setTime():void
++ getDate():str
++ getTime():str
+---
+
+WeatherSystem
+---
+- rain: boolean
+- poss_rain : str
+- current_state: str
+- tomorrow_state:str
+- temperature : str
+- humidade: str
+- pressao:str
+---
++ setRain():void
++ getRain():booelan
++ setPoss_rain(): void
++ getPoss_rain(): srt
++ getCurrent_state():str
++ setTemperature(): void
++ getTemperature(): str
++ setHumidade():void
++ getHumidade():str
++ setPressao():void
++ getPressao():str
+---
+
+PaperRepo
+---
+- Papers : list
+- Paper : PaperInLook
+---
+
+---
+
+PaperInLook
+composes PaperRepo
+---
+- current_price:int
+- lower_pricetd:int
+- higher_pricetd:int
+- volatility:int
+- Pbuyers : int
+- Pseller: int
+---
++ setPrice():void
++ getPrice():int
++ setLower():void
++ getLower():int
++ seHigher():void
++ getHigher():int
++ setVolat():void
++ getVoilat():int
++ getPbuy() : int
++ setPbut() : void
++ setPsell(): void
++ getPsell():int
+---
+
