@@ -1,85 +1,158 @@
 
 Main
-association Controller_system
+association RaspWP
 ---
 ---
 ---
 
-Controller_system
-composes DatesSystem
-composes PaperRepo
-composes WeatherSystem
+RaspWP
+composes DatesSystemController
+composes PaperController
+composes WeatherSystemController
 ---
-- usuarioRepository: UsuarioRepository
+- datesController: DatesSystemController
+- paperController: PaperController
+- weatherController:WeatherSystemController
 ---
-+ Controller_system()
++ RaspWP()
++ getDate(country:str,city:str):str
++ setDate(country:str,city:str):str
++ getTime():str
++ getDate():str
++ getPaper(paper:str):str //str representation of a paper
++ getVolume(month0:int,month1:int,paper:str):str
++ getMaxPrice(month0:int,month1:int,paper:str):str
++ getMinPrice(month0:int,month1:int,paper:str):str
++ getaverage(month0:int,month1:int,paper:str):str
++ setReportPaper(paper:str):void
++ setAlertPaper(price:double,paper:str):void
++ getCurrentWeather():str
++ setWeatherCity(country:str,city:str):void
++ setReportWeather(country:str,city:str):void
+---
 
----
 
-DatesSystem
+DatesSystemController
+composes Time
 ---
-- date : str
-- time: str
+- time : Time
 ---
 + DatesSystem()
-+ setDate():void
-+ setTime():void
++ setTime(country:str,city:str):void //ur time
++ getDate(country:str,city:str):str //any to search
++ getTime(country:str,city:str):str
++ getTime():str
++ getDate():str
+---
+
+Time
+---
+- date : str
+- time : str
+- city : str
+- country:str
+---
++ Time(country:str,city:str)
++ getDate(country:str,city:str):str
++ getTime(country:str,city:str):str
 + getDate():str
 + getTime():str
++ toString():str
 ---
 
-WeatherSystem
+
+WeatherSystemController
+composes Weather
 ---
-- rain: boolean
-- poss_rain : str
-- current_state: str
-- tomorrow_state:str
-- temperature : str
-- humidade: str
-- pressao:str
+- localWeather:Weather
 ---
-+ setRain():void
-+ getRain():booelan
-+ setPoss_rain(): void
-+ getPoss_rain(): srt
-+ getCurrent_state():str
-+ setTemperature(): void
-+ getTemperature(): str
-+ setHumidade():void
++ WeatherSystemController()
++ getCurrentState():str// return sunny,rainy etc
++ getPossRain(): srt
 + getHumidade():str
-+ setPressao():void
-+ getPressao():str
++ getTemperature():str
++ getAtmPressure():str
 ---
 
-PaperRepo
+
+Weather
 ---
-- Papers : list
-- Paper : PaperInLook
+- coutnry:str
+- city: str
+---
++ getCurrentState():str// return sunny,rainy etc
++ getPossRain(): srt
++ getHumidade():str
++ getTemperature():str
++ getAtmPressure():str
++ toString():str
 ---
 
+
+
+PaperController
+composes PaperService
+---
+- paperService : PaperService
+---
++ PaperController()
++ getPaper(paper:str):str //str representation of a paper
++ getVolume(month0:int,month1:int,paper:str):str
++ getMaxPrice(month0:int,month1:int,paper:str):str
++ getMinPrice(month0:int,month1:int,paper:str):str
++ getaverage(month0:int,month1:int,paper:str):str
++ setReportPaper(paper:str):void //show in the display
++ setAlertPaper(price:double,paper:str):void
++ getPbuyers(): str
++ getPsellers():str
 ---
 
-PaperInLook
+
+
+
+
+PaperService
+composes Paper
+---
+- listPapers : Set<Paper> // set no orfer , all are unique.
+---
++ PaperService()
++ getPaper(paper:str):str //str representation of a paper
++ getVolume(month0:int,month1:int,paper:str):str
++ getMaxPrice(month0:int,month1:int,paper:str):str
++ getMinPrice(month0:int,month1:int,paper:str):str
++ getaverage(month0:int,month1:int,paper:str):str
++ setReportPaper(paper:str):void //show in teh display
++ setAlertPaper(price:double,paper:str):void
++ getPbuyers(): str
++ getPsellers():str
+---
+
+
+//paper its identifyed by its code in str
+
+Paper
 composes PaperRepo
 ---
-- current_price:int
-- lower_pricetd:int
-- higher_pricetd:int
-- volatility:int
-- Pbuyers : int
+- last_price:int
+- lower_price:int
+- higher_price:int
+- last_volatility:int
+- Pbuyers : int // P stands here for percentage
 - Pseller: int
 ---
-+ setPrice():void
+- setPrice():void
+- setHigherP():void
+- setLowerP():void
+- setPseller():void
+- setPbuyer():void
+- setVolati():void
 + getPrice():int
-+ setLower():void
 + getLower():int
-+ seHigher():void
 + getHigher():int
-+ setVolat():void
 + getVoilat():int
 + getPbuy() : int
-+ setPbut() : void
-+ setPsell(): void
 + getPsell():int
----
++ toString():str
 
+---
