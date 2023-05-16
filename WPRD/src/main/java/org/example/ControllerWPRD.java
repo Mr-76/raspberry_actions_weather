@@ -23,9 +23,8 @@ public class ControllerWPRD {
 		return 0;
 	}
 
-	public int UpdateAcao(String codigo) {
-		this.AcoesCreator.updateAcao(codigo);
-		return 0;
+	public boolean UpdateAcao(String codigo) {
+		return this.AcoesCreator.updateAcao(codigo);
 	}
 
 	public int UpdateAllAcoes(String codigo) {

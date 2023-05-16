@@ -6,7 +6,7 @@ public class Main {
     }
 
     public void retorna() {
-        print("hello");
+        System.out.println("hello");
     }
 }
 

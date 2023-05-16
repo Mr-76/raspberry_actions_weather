@@ -22,11 +22,13 @@ public class AcoesCreator {
 		return this.repositorioAcoes.getAcao(codigo);
 	}
 
-	public void updateAcao(String codigo) {
+	public boolean updateAcao(String codigo) {
 		if (this.repositorioAcoes.acaoExiste(codigo) != false) {
 			this.repositorioAcoes.updateAcao(codigo);
+			return true;
 		} else {
 			System.out.println("Sem acao com esse nome");
+			return false;
 		}
 	}
 

@@ -5,6 +5,12 @@ import java.util.Map;
 
 //api fica no repository 
 
+/*Repositorio de acoes, como é algo bem simples decidi
+ * manter a api de busca de precos e volume aquie mesmo
+ * sem precisar criar um service pois é algo simples,
+ * o proposito da classe é manter a colecao de acoes sendo consultadas
+ * por um momento e depois apagar,pois serao salvas no banco de dados
+ */
 public class AcoesRepository {
 	private Map<String, Acao> list_acoes;
 
@@ -25,18 +31,9 @@ public class AcoesRepository {
 		return list_acoes.get(codigo);
 	}
 
-	public void updateAcao(String codigo, int maxprice, int minprice, int maxvolume, int minvolume) {
-
-		// chama api
-	}
-
-	public void updateAcao(int maxprice, int minprice, int maxvolume, int minvolume) {
-
-		// chama api
-	}
 
 	public void updateAcao(String codigo) {
-		// chama api
+		//chama api
 	}
 
 	public boolean acaoExiste(String codigo) {
