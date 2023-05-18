@@ -60,12 +60,9 @@ public class MainTest {
 			// System.out.println(doc);
 			Elements products = doc.select("fin-streamer");
 			System.out.println(products.get(18).text());
-				// String elementString = element.selectFirst("fin-streamer").text();
-				// System.out.println(element.selectFirst("fin-streamer").text());
-				// replacing sstring
-				// String modfiedString = elementString.replace(",", ".");
-				// Float price_stock = Float.parseFloat(modfiedString);
-				// System.out.printf("%f float", price_stock);
+			String price_stock_string = products.get(18).text();
+			Float price_stock = Float.parseFloat(price_stock_string);
+			System.out.printf("%f float", price_stock);
 			// System.out.println(products);
 
 		} catch (IOException e) {

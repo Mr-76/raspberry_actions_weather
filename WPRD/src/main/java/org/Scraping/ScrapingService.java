@@ -30,22 +30,31 @@ public class ScrapingService {
 					.header("Accept-Language", "*")
 					.get();
 			// System.out.println(doc);
-			Elements products = doc.select("div.value");
-			for (Element element : products) {
-				String elementString = element.selectFirst("P").text();
-				System.out.println(element.selectFirst("P").text());
-				// replacing sstring
-				String modfiedString = elementString.replace(",", ".");
-				Float price_stock = Float.parseFloat(modfiedString);
-				System.out.printf("%f float", price_stock);
-			}
+			Elements products = doc.select("fin-streamer");
+			System.out.println(products.get(18).text());
+			String price_stock_string = products.get(18).text();
+			precoAcao = Float.parseFloat(price_stock_string);
+			System.out.printf("%f float", precoAcao);
 			// System.out.println(products);
-
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-
 		return precoAcao;
+	}
+
+	public Float getVolume(String codigo) {
+		float volume = 0;
+		return volume;
+	}
+
+	public Float getMaxPrice(String codigo) {
+		float volume = 0;
+		return volume;
+	}
+
+	public Float getMinprice(String codigo) {
+		float volume = 0;
+		return volume;
 	}
 
 }
