@@ -58,12 +58,17 @@ public class MainTest {
 					.header("Accept-Language", "*")
 					.get();
 			// System.out.println(doc);
-			
+
 			Elements products = doc.select("div.value");
 			for (Element element : products) {
+				String elementString = element.selectFirst("P").text();
 				System.out.println(element.selectFirst("P").text());
+				// replacing sstring
+				String modfiedString = elementString.replace(",", ".");
+				Float price_stock = Float.parseFloat(modfiedString);
+				System.out.printf("%f float", price_stock);
 			}
-			//System.out.println(products);
+			// System.out.println(products);
 
 		} catch (IOException e) {
 			throw new RuntimeException(e);
