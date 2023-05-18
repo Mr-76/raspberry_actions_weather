@@ -58,11 +58,12 @@ public class MainTest {
 					.header("Accept-Language", "*")
 					.get();
 			// System.out.println(doc);
-			Elements products = doc.select("span");
+			
+			Elements products = doc.select("div.value");
 			for (Element element : products) {
-				System.out.println(element.text());
+				System.out.println(element.selectFirst("P").text());
 			}
-			System.out.println(products);
+			//System.out.println(products);
 
 		} catch (IOException e) {
 			throw new RuntimeException(e);
