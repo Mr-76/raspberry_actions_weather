@@ -1,5 +1,8 @@
 package org.example;
 
+import org.jsoup.*;
+import org.jsoup.nodes.*;
+import org.jsoup.select.*;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,27 +48,25 @@ public class MainTest {
 	}
 
 	@Test
-	public void testa_web_scrape(){
-		String searchQuery = "iphone 13";
-
-// Instantiate the client
-		WebClient client = new WebClient();
-		client.getOptions().setCssEnabled(false);
-		client.getOptions().setJavaScriptEnabled(false);
-
-// Set up the URL with the search term and send the request
-		String searchUrl = null;
+	public void testa_web_scrape() {
+		Document doc;
 		try {
-			searchUrl = "https://newyork.craigslist.org/search/moa?query=" + URLEncoder.encode(searchQuery, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
-		try {
-			HtmlPage page = client.getPage(searchUrl);
+			// fetching the target website
+			// http headers to be blocked by the website :>
+			doc = Jsoup.connect("https://www.infomoney.com.br/cotacoes/b3/acao/energias-br-enbr3/")
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36")
+					.header("Accept-Language", "*")
+					.get();
+			// System.out.println(doc);
+			Elements products = doc.select("span");
+			for (Element element : products) {
+				System.out.println(element.text());
+			}
+			System.out.println(products);
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 }
