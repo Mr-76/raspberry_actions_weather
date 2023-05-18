@@ -53,21 +53,19 @@ public class MainTest {
 		try {
 			// fetching the target website
 			// http headers to be blocked by the website :>
-			doc = Jsoup.connect("https://www.infomoney.com.br/cotacoes/b3/acao/energias-br-enbr3/")
+			doc = Jsoup.connect("https://finance.yahoo.com/quote/ENBR3.SA?p=ENBR3.SA")
 					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36")
 					.header("Accept-Language", "*")
 					.get();
 			// System.out.println(doc);
-
-			Elements products = doc.select("div.value");
-			for (Element element : products) {
-				String elementString = element.selectFirst("P").text();
-				System.out.println(element.selectFirst("P").text());
+			Elements products = doc.select("fin-streamer");
+			System.out.println(products.get(18).text());
+				// String elementString = element.selectFirst("fin-streamer").text();
+				// System.out.println(element.selectFirst("fin-streamer").text());
 				// replacing sstring
-				String modfiedString = elementString.replace(",", ".");
-				Float price_stock = Float.parseFloat(modfiedString);
-				System.out.printf("%f float", price_stock);
-			}
+				// String modfiedString = elementString.replace(",", ".");
+				// Float price_stock = Float.parseFloat(modfiedString);
+				// System.out.printf("%f float", price_stock);
 			// System.out.println(products);
 
 		} catch (IOException e) {
