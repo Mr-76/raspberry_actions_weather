@@ -48,7 +48,40 @@ public class MainTest {
 	}
 
 	@Test
-	public void testa_web_scrape() {
+	public void testAddAcao() {
+		String codigo = "BBAS3";
+		controlador.createAcao(codigo);
+		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
+		Acao acao = controlador.getAcao(codigo);
+		System.out.printf("%f", acao.getCurrentPrice());
+
+		codigo = "ENBR3";
+		controlador.createAcao(codigo);
+		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
+		acao = controlador.getAcao(codigo);
+		System.out.printf("%f", acao.getCurrentPrice());
+
+		codigo = "ABCB4";
+		controlador.createAcao(codigo);
+		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
+		acao = controlador.getAcao(codigo);
+		System.out.printf("%f", acao.getCurrentPrice());
+
+		codigo = "PETR4";
+		controlador.createAcao(codigo);
+		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
+		acao = controlador.getAcao(codigo);
+		System.out.printf("%f", acao.getCurrentPrice());
+
+		codigo = "GMAT3";
+		controlador.createAcao(codigo);
+		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
+		acao = controlador.getAcao(codigo);
+		System.out.printf("%f", acao.getCurrentPrice());
+	}
+
+	@Test
+	public void testa_web_scrape_get_preco() {
 		Document doc;
 		try {
 			// fetching the target website
@@ -68,6 +101,32 @@ public class MainTest {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+
 	}
 
+	@Test
+	public void testa_web_scrape_get_volume() {
+		Document doc;
+		try {
+			// fetching the target website
+			// http headers to be blocked by the website :>
+			doc = Jsoup.connect("https://finance.yahoo.com/quote/ENBR3.SA?p=ENBR3.SA")
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36")
+					.header("Accept-Language", "*")
+					.get();
+			// System.out.println(doc);
+			Elements products = doc.select("fin-streamer");
+			int i = 0;
+			for (Element elemento : products) {
+				System.out.printf("%d", i);
+				System.out.println(elemento.text());
+
+				i++;
+			}
+			// System.out.println(products);
+
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

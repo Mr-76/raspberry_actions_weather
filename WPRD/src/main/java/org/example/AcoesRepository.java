@@ -3,6 +3,8 @@ package org.example;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.Scraping.ScrapingService;
+
 //api fica no repository 
 
 /*Repositorio de acoes, como é algo bem simples decidi
@@ -13,17 +15,28 @@ import java.util.Map;
  */
 public class AcoesRepository {
 	private Map<String, Acao> list_acoes;
+	private ScrapingService scrapService1;
 
 	public AcoesRepository() {
 		list_acoes = new HashMap<String, Acao>();
+		scrapService1 = new ScrapingService();
 	}
 
 	public void removeAcao(String codigo) {
 		list_acoes.remove(codigo);
 	}
 
+
+	private int updateAcao(Acao acao) {
+		acao.setPrice(scrapService1.getPrice(acao.getCodigo()));
+
+
+		return 0;
+	}
+
 	public void addAcao(Acao acao) {
 		String codigo = acao.getCodigo();
+		acao.setPrice(scrapService1.getPrice(codigo));
 		list_acoes.put(codigo, acao);
 	}
 
@@ -31,9 +44,8 @@ public class AcoesRepository {
 		return list_acoes.get(codigo);
 	}
 
-
 	public void updateAcao(String codigo) {
-		//chama api
+		// chama api
 	}
 
 	public boolean acaoExiste(String codigo) {

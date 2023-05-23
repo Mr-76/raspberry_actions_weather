@@ -1,34 +1,38 @@
 package org.example;
 
 public class ControllerWPRD {
-	private AcoesCreator AcoesCreator;
+	private AcoesCreator acoesCreator;
 	private WeatherCreator WeatherCreator;
 
 	public ControllerWPRD() {
-		this.AcoesCreator = new AcoesCreator();
+		this.acoesCreator = new AcoesCreator();
 		this.WeatherCreator = new WeatherCreator();
 	}
 
+	public Acao getAcao(String codigo) {
+		return this.acoesCreator.getAcao(codigo);
+	}
+
 	public boolean acaoExiste(String codigo) {
-		return AcoesCreator.acaoExiste(codigo);
+		return acoesCreator.acaoExiste(codigo);
 	}
 
 	public int createAcao(String codigo) {
-		this.AcoesCreator.createAcao(codigo);
+		this.acoesCreator.createAcao(codigo);
 		return 0;
 	}
 
 	public int RemoveAcao(String codigo) {
-		this.AcoesCreator.RemoveAcao(codigo);
+		this.acoesCreator.RemoveAcao(codigo);
 		return 0;
 	}
 
 	public boolean UpdateAcao(String codigo) {
-		return this.AcoesCreator.updateAcao(codigo);
+		return this.acoesCreator.updateAcao(codigo);
 	}
 
 	public int UpdateAllAcoes(String codigo) {
-		this.AcoesCreator.updateAllAcoes(codigo);
+		this.acoesCreator.updateAllAcoes(codigo);
 
 		return 0;
 	}

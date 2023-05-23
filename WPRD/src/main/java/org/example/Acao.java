@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class Acao {
 	private String codigo_acao;
-	private double currentPrice = 0;
+	private float currentPrice = 0;
 	private int minprice = 0;
 	private int maxprice = 0;
 	private int minvolume = 0;
@@ -29,7 +29,7 @@ public class Acao {
 		return codigo_acao;
 	}
 
-	public double getCurrentPrice() {
+	public float getCurrentPrice() {
 		return currentPrice;
 	}
 
@@ -97,7 +97,7 @@ public class Acao {
 		this.maxvolume = maxvolume;
 	}
 	// Seleciona preco da acao
-	public void setPrice(double currentPrice) {
+	public void setPrice(float currentPrice) {
 		this.currentPrice = currentPrice;
 	}
 
