@@ -1,5 +1,7 @@
 package org.example;
 
+import org.Scraping.ScrapingService;
+
 public class ControllerWPRD {
 	private AcoesCreator acoesCreator;
 	private WeatherCreator WeatherCreator;
@@ -50,5 +52,9 @@ public class ControllerWPRD {
 	public int UpdateWeather(String codigo) {
 		this.WeatherCreator.UpdateWeather(codigo);
 		return 0;
+	}
+
+	public ScrapingService getScrapService() {
+		return this.acoesCreator.getScrapService();
 	}
 }

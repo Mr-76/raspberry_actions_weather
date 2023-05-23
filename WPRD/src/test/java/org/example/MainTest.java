@@ -1,5 +1,6 @@
 package org.example;
 
+import org.Scraping.ScrapingService;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
@@ -53,35 +54,47 @@ public class MainTest {
 		controlador.createAcao(codigo);
 		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
 		Acao acao = controlador.getAcao(codigo);
-		System.out.printf("%f", acao.getCurrentPrice());
+		System.out.printf("preco eh %f\n", acao.getCurrentPrice());
+		System.out.printf("volume eh %f volume\n", acao.getVolume());
 
 		codigo = "ENBR3";
 		controlador.createAcao(codigo);
 		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
 		acao = controlador.getAcao(codigo);
-		System.out.printf("%f", acao.getCurrentPrice());
+		System.out.printf("preco eh %f\n", acao.getCurrentPrice());
+		System.out.printf("volume eh %f volume\n", acao.getVolume());
 
 		codigo = "ABCB4";
 		controlador.createAcao(codigo);
 		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
 		acao = controlador.getAcao(codigo);
-		System.out.printf("%f", acao.getCurrentPrice());
+		System.out.printf("preco eh %f\n", acao.getCurrentPrice());
+		System.out.printf("volume eh %f volume\n", acao.getVolume());
 
 		codigo = "PETR4";
 		controlador.createAcao(codigo);
 		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
-		acao = controlador.getAcao(codigo);
-		System.out.printf("%f", acao.getCurrentPrice());
+		System.out.printf("preco eh %f\n", acao.getCurrentPrice());
+		System.out.printf("volume eh %f volumea\n", acao.getVolume());
 
 		codigo = "GMAT3";
 		controlador.createAcao(codigo);
 		Assertions.assertEquals(true, controlador.UpdateAcao(codigo));
-		acao = controlador.getAcao(codigo);
-		System.out.printf("%f", acao.getCurrentPrice());
+		System.out.printf("preco eh %f\n", acao.getCurrentPrice());
+		System.out.printf("volume eh %f volume\n", acao.getVolume());
+
 	}
 
 	@Test
-	public void testa_web_scrape_get_preco() {
+	public void testaVOlume() {
+		ScrapingService scrap = controlador.getScrapService();
+		System.out.println("testando volume");
+		System.out.println(scrap.getVolume("GMAT3"));
+
+	}
+
+	@Test
+	public void testa_web_scrape() {
 		Document doc;
 		try {
 			// fetching the target website
@@ -92,10 +105,10 @@ public class MainTest {
 					.get();
 			// System.out.println(doc);
 			Elements products = doc.select("fin-streamer");
-			System.out.println(products.get(18).text());
+			// System.out.println(products.get(18).text());
 			String price_stock_string = products.get(18).text();
 			Float price_stock = Float.parseFloat(price_stock_string);
-			System.out.printf("%f float", price_stock);
+			// System.out.printf("%f float", price_stock);
 			// System.out.println(products);
 
 		} catch (IOException e) {
@@ -116,13 +129,10 @@ public class MainTest {
 					.get();
 			// System.out.println(doc);
 			Elements products = doc.select("fin-streamer");
-			int i = 0;
-			for (Element elemento : products) {
-				System.out.printf("%d", i);
-				System.out.println(elemento.text());
-
-				i++;
-			}
+			// System.out.println(products.get(23).text());
+			String price_stock_string = products.get(23).text();
+			Float price_stock = Float.parseFloat(price_stock_string.replace(",", ""));
+			System.out.printf("\nvolume stock %f \n", price_stock);
 			// System.out.println(products);
 
 		} catch (IOException e) {

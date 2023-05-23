@@ -14,13 +14,13 @@ public class Acao {
 	private float currentPrice = 0;
 	private int minprice = 0;
 	private int maxprice = 0;
-	private int minvolume = 0;
-	private int maxvolume = 0;
+	private float volume = 0;
 
 	// Construtor
 	public Acao(String codigo) {
 		this.codigo_acao = codigo;
 	}
+
 	public String getCodigo() {
 		return this.codigo_acao;
 	}
@@ -39,14 +39,6 @@ public class Acao {
 
 	public int getMaxprice() {
 		return maxprice;
-	}
-
-	public int getMinvolume() {
-		return minvolume;
-	}
-
-	public int getMaxvolume() {
-		return maxvolume;
 	}
 
 	@Override
@@ -87,19 +79,21 @@ public class Acao {
 		this.maxprice = maxprice;
 	}
 
-	// seleciona volume minimo
-	public void setMinvolume(int minvolume) {
-		this.minvolume = minvolume;
-	}
-
-	// seleciona volume maximo
-	public void setMaxvolume(int maxvolume) {
-		this.maxvolume = maxvolume;
-	}
 	// Seleciona preco da acao
 	public void setPrice(float currentPrice) {
 		this.currentPrice = currentPrice;
 	}
 
+	public float getVolume() {
+		return volume;
+	}
+
+	public void setCurrentPrice(float currentPrice) {
+		this.currentPrice = currentPrice;
+	}
+
+	public void setVolume(float volume) {
+		this.volume = volume;
+	}
 
 }
