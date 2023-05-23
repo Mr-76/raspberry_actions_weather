@@ -21,7 +21,7 @@ public class ScrapingService {
 	 *
 	 * @return preco da acao buscada
 	 */
-	public Float getPrice(String codigo) {
+	public float getPrice(String codigo) {
 		Document doc;
 		float precoAcao = 0.0f;
 		String nomeAcao = String.format("https://finance.yahoo.com/quote/%s.SA?p=%s.SA", codigo, codigo);

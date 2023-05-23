@@ -12,8 +12,8 @@ import java.util.Objects;
 public class Acao {
 	private String codigo_acao;
 	private float currentPrice = 0;
-	private int minprice = 0;
-	private int maxprice = 0;
+	private float minprice = 0;
+	private float maxprice = 0;
 	private float volume = 0;
 
 	// Construtor
@@ -33,11 +33,11 @@ public class Acao {
 		return currentPrice;
 	}
 
-	public int getMinprice() {
+	public float getMinprice() {
 		return minprice;
 	}
 
-	public int getMaxprice() {
+	public float getMaxprice() {
 		return maxprice;
 	}
 
@@ -70,13 +70,13 @@ public class Acao {
 	}
 
 	// Seleciona preco minimo
-	public void setMinprice(int minprice) {
-		this.minprice = minprice;
+	public void setMinprice(float price) {
+		this.minprice = price;
 	}
 
 	// seleciona preco maximo
-	public void setMaxprice(int maxprice) {
-		this.maxprice = maxprice;
+	public void setMaxprice(float price) {
+		this.maxprice = price;
 	}
 
 	// Seleciona preco da acao
